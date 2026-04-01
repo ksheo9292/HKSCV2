@@ -1,0 +1,339 @@
+/* ── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #222536;
+  --border: #2e3247;
+  --accent: #6c8eff;
+  --accent2: #4ecdc4;
+  --text: #e2e4f0;
+  --text-muted: #8b90a8;
+  --company: #a78bfa;
+  --tag-bg: #1e2440;
+  --tag-border: #3a4070;
+  --tag-bg2: #1a2e2d;
+  --tag-border2: #2e4d4a;
+  --tag-bg3: #1e1e2e;
+  --tag-border3: #3a3060;
+  --radius: 10px;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ────────────────────────────────────────────────── */
+header {
+  background: linear-gradient(135deg, #0d1229 0%, #131829 50%, #0f1520 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 24px 40px;
+}
+
+.header-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.header-text h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(120deg, #fff 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.header-text .title {
+  font-size: 16px;
+  color: var(--accent2);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.header-text .meta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.contact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.contact li a { color: var(--text-muted); }
+.contact li a:hover { color: var(--accent); text-decoration: none; }
+
+.contact svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Main Layout ───────────────────────────────────────────── */
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+/* ── Section Titles ────────────────────────────────────────── */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Profile ───────────────────────────────────────────────── */
+#profile p {
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 720px;
+  line-height: 1.8;
+}
+
+#profile p strong { color: var(--text); }
+
+/* ── Timeline / Jobs ───────────────────────────────────────── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.job {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.job::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20px; bottom: 20px;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  border-radius: 0 2px 2px 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.job:hover { border-color: var(--accent); }
+.job:hover::before { opacity: 1; }
+
+.job + .job { margin-top: 12px; }
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.job-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.company {
+  font-size: 13px;
+  color: var(--company);
+  font-weight: 500;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.job ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.job ul li {
+  font-size: 14px;
+  color: var(--text-muted);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.job ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.job ul li strong { color: var(--text); }
+
+/* ── Education ─────────────────────────────────────────────── */
+.edu-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+
+.edu-card:hover { border-color: var(--accent); }
+.edu-card.cert:hover { border-color: var(--accent2); }
+
+.edu-icon {
+  font-size: 22px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.edu-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.edu-detail {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ── Skills ────────────────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.skill-group h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.tags span {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* blue — AI/data */
+.tags span {
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  color: var(--accent);
+}
+
+/* teal — FA */
+.tags.secondary span {
+  background: var(--tag-bg2);
+  border: 1px solid var(--tag-border2);
+  color: var(--accent2);
+}
+
+/* purple — languages */
+.tags.tertiary span {
+  background: var(--tag-bg3);
+  border: 1px solid var(--tag-border3);
+  color: var(--company);
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+footer a { color: var(--text-muted); }
+footer a:hover { color: var(--accent); text-decoration: none; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .header-inner { flex-direction: column; gap: 24px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .job { padding: 18px 20px; }
+  main { padding: 32px 16px 48px; gap: 40px; }
+}
